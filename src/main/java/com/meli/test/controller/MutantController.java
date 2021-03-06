@@ -4,7 +4,6 @@ import com.meli.test.dto.StatsOutDTO;
 import com.meli.test.dto.ValidationMutantInDTO;
 import com.meli.test.service.MutantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,7 @@ public class MutantController {
 
     @PostMapping
     public ResponseEntity isMutant(@RequestBody ValidationMutantInDTO validation){
-        return new ResponseEntity(HttpStatus.OK);
+        return mutantService.validateMutant(validation);
     }
 
     @GetMapping(path = "stats")
