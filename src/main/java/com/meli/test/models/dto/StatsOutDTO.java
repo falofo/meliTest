@@ -1,4 +1,4 @@
-package com.meli.test.dto;
+package com.meli.test.models.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

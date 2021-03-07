@@ -1,13 +1,17 @@
 package com.meli.test.service;
 
-import com.meli.test.dto.ValidateDTO;
-import com.meli.test.dto.ValidationMutantInDTO;
+import com.meli.test.models.dto.ValidateDTO;
+import com.meli.test.models.dto.ValidationMutantInDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.meli.test.models.Constants.NUMBER_OF_CONSECUTIVE_LETTERS;
+import static com.meli.test.models.Constants.NUMBER_OF_CONSECUTIVE_LETTERS_SEQUENCES_TO_BE_MUTANT;
+import static com.meli.test.util.SequenceUtils.*;
 
 @Service
 public class MutantService {
@@ -32,51 +36,28 @@ public class MutantService {
      */
     private boolean isMutant(String[] dna){
         ValidateDTO val = new ValidateDTO();
-        if(!validateData(dna, val)){
-            return false;
-        }
-        val.setCount(0);
-        if(countSequence(dna, val) || countSequence(val.getVertical(), val)){
+        int count = 0;
+        count = countMatch(String.join("|",dna), count);
+        if( count == NUMBER_OF_CONSECUTIVE_LETTERS_SEQUENCES_TO_BE_MUTANT){
             return true;
         }
-        return false;
-    }
 
-    /**
-     *
-     * @param dna
-     * @param val
-     * @return
-     */
-    private boolean validateData(String[] dna, ValidateDTO val){
-        Pattern pattern = Pattern.compile("[ATGC]");
-        int lengthMatrix = dna.length;
-        val.setVertical(new String[lengthMatrix]);
-        for (int i = 0; i < lengthMatrix; i++) {
-            Matcher matcher = pattern.matcher(dna[i]);
-            if(dna[i].length() != lengthMatrix){ //|| !matcher.matches()){
-                return false;
-            }
-            for (int j = 0; j < dna[i].length(); j++) {
-                val.getVertical()[j] = (val.getVertical()[j] == null)?dna[i].substring(j,j+1):val.getVertical()[j]+dna[i].substring(j,j+1);
-            }
+        count = countMatch(getVertical(dna), count);
+        if( count == NUMBER_OF_CONSECUTIVE_LETTERS_SEQUENCES_TO_BE_MUTANT){
+            return true;
         }
-        return true;
-    }
 
-    /**
-     *
-     * @param sequence
-     * @param val
-     * @return
-     */
-    private boolean countSequence(String[] sequence, ValidateDTO val){
-        for(int i=0;i<sequence.length;i++){
-            val.setCount( val.getCount()+countMatch(sequence[i]));
-            if(val.getCount() > 1){
-                return true;
-            }
+        count = countMatch(getRightLeftDiagonals(dna), count);
+        if( count == NUMBER_OF_CONSECUTIVE_LETTERS_SEQUENCES_TO_BE_MUTANT){
+            return true;
         }
+
+        count = countMatch(getLeftRightDiagonals(dna), count);
+        if( count == NUMBER_OF_CONSECUTIVE_LETTERS_SEQUENCES_TO_BE_MUTANT){
+            return true;
+        }
+
+
         return false;
     }
 
@@ -85,12 +66,15 @@ public class MutantService {
      * @param sequence
      * @return
      */
-    private int countMatch(String sequence){
-        Pattern pattern = Pattern.compile("AAAA|TTTT|GGGG|CCCC");
+    private int countMatch(String sequence, int baseCount){
+        String regex = String.format("A{%d}|T{%d}|G{%d}|C{%d}",NUMBER_OF_CONSECUTIVE_LETTERS,NUMBER_OF_CONSECUTIVE_LETTERS,NUMBER_OF_CONSECUTIVE_LETTERS,NUMBER_OF_CONSECUTIVE_LETTERS);
+        Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(sequence);
-        int count = 0;
-        while (matcher.find())
+        int count = baseCount;
+        while (count < NUMBER_OF_CONSECUTIVE_LETTERS_SEQUENCES_TO_BE_MUTANT && matcher.find()) {
             count++;
+        }
+
         return count;
     }
 

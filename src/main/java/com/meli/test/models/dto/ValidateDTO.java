@@ -1,4 +1,4 @@
-package com.meli.test.dto;
+package com.meli.test.models.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
