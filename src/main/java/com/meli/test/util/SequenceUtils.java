@@ -3,6 +3,10 @@ package com.meli.test.util;
 import static com.meli.test.models.Constants.NUMBER_OF_CONSECUTIVE_LETTERS_WITHOUT_RELEVANCE;
 
 public class SequenceUtils {
+
+    private SequenceUtils() {
+    }
+
     /**
      *
      * @param dna
@@ -43,8 +47,7 @@ public class SequenceUtils {
         j = dna.length - 1;
 
         while(i < dna.length - NUMBER_OF_CONSECUTIVE_LETTERS_WITHOUT_RELEVANCE) {
-            if(diagonal.length()>0)
-                diagonal.append("|");
+            diagonal.append("|");
 
             diagonal.append(getRightLeftDiagonal(dna, i, j));
             i++;
@@ -57,20 +60,16 @@ public class SequenceUtils {
     /**
      *
      * @param dna
-     * @param startRow
-     * @param startColumn
+     * @param row
+     * @param column
      * @return
      */
-    private static String getRightLeftDiagonal(String[] dna, int startRow, int startColumn) {
+    private static String getRightLeftDiagonal(String[] dna, int row, int column) {
         StringBuilder diagonal = new StringBuilder();
-        int k;
-        int l;
-        k = startRow;
-        l = startColumn;
-        while (k < dna.length && l >= 0) {
-            diagonal.append(dna[k].charAt(l));
-            k++;
-            l--;
+        while (row < dna.length && column >= 0) {
+            diagonal.append(dna[row].charAt(column));
+            row++;
+            column--;
         }
         return diagonal.toString();
     }
@@ -97,8 +96,7 @@ public class SequenceUtils {
         j = 0;
 
         while(i < dna.length - NUMBER_OF_CONSECUTIVE_LETTERS_WITHOUT_RELEVANCE) {
-            if(diagonal.length()>0)
-                diagonal.append("|");
+            diagonal.append("|");
 
             diagonal.append(getLeftRightDiagonal(dna, i, j));
             i++;
@@ -111,20 +109,16 @@ public class SequenceUtils {
     /**
      *
      * @param dna
-     * @param startRow
-     * @param startColumn
+     * @param row
+     * @param column
      * @return
      */
-    private static String getLeftRightDiagonal(String[] dna, int startRow, int startColumn) {
+    private static String getLeftRightDiagonal(String[] dna, int row, int column) {
         StringBuilder diagonal = new StringBuilder();
-        int k;
-        int l;
-        k = startRow;
-        l = startColumn;
-        while (k < dna.length && l < dna.length) {
-            diagonal.append(dna[k].charAt(l));
-            k++;
-            l++;
+        while (row < dna.length && column < dna.length) {
+            diagonal.append(dna[row].charAt(column));
+            row++;
+            column++;
         }
         return diagonal.toString();
     }

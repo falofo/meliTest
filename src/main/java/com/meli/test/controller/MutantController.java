@@ -2,7 +2,7 @@ package com.meli.test.controller;
 
 import com.meli.test.models.dto.StatsOutDTO;
 import com.meli.test.models.dto.ValidationMutantInDTO;
-import com.meli.test.service.MutantService;
+import com.meli.test.service.IMutantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +19,20 @@ import java.util.Map;
 public class MutantController {
 
     @Autowired
-    private MutantService mutantService;
+    private IMutantService mutantService;
 
     @PostMapping
-    public ResponseEntity isMutant(@Valid @RequestBody ValidationMutantInDTO validation){
-        return mutantService.validateMutant(validation);
+    public ResponseEntity<Void> isMutant(@Valid @RequestBody ValidationMutantInDTO validation){
+        if(mutantService.isMutant(validation.getDna())){
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 
     @GetMapping(path = "stats")
     public StatsOutDTO getStats(){
-        return new StatsOutDTO(1,1,1.0);// TODO: servicio obtener stats
+        return mutantService.getStats();
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
