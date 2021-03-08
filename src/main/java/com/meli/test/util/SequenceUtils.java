@@ -8,7 +8,7 @@ public class SequenceUtils {
     }
 
     /**
-     * Retorna las secuencias verticales a partir del ADN
+     * Retorna las secuencias verticales a partir del ADN separadas por un |
      *
      * @param dna
      * @return
@@ -27,7 +27,7 @@ public class SequenceUtils {
     }
 
     /**
-     * Retorna la secuencia de diagonales de Derecha a Izquierda
+     * Retorna la secuencia de diagonales de Derecha a Izquierda separadas por un |
      *
      * @param dna
      * @return
@@ -64,7 +64,7 @@ public class SequenceUtils {
     }
 
     /**
-     * Retorna la cadena de las Diagonales de derecha a Izquierda separadas por un |
+     * Retorna la diagonal de derecha a Izquierda, a partir del punto de inicio de recorrido row, column
      *
      * @param dna
      * @param row
@@ -82,7 +82,7 @@ public class SequenceUtils {
     }
 
     /**
-     * Retorna la secuencia de diagonales de izquierda a derecha
+     * Retorna la secuencia de diagonales de izquierda a derecha separadas por un |
      *
      * @param dna
      * @return
@@ -119,7 +119,7 @@ public class SequenceUtils {
     }
 
     /**
-     * Retorna la cadena de las diagonales de izquierda a derecha separadas por un |
+     * Retorna la diagonal de izquierda a derecha, a partir del punto de inicio de recorrido row, column
      *
      * @param dna
      * @param row
