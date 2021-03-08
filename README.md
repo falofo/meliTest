@@ -35,7 +35,7 @@ iguales, de forma oblicua, horizontal o vertical.
 #### Metodo GET /mutant/stats
 
 Devuelve un Json con las estadísticas de las verificaciones de ADN: 
-{"count_mutant_dna":40, "count_human_dna":100: "ratio":0.4}
+{"count_mutant_dna":40, "count_human_dna":100, "ratio":0.4}
 
 ## Tecnologías
 ***
