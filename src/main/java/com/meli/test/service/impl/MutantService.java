@@ -21,6 +21,7 @@ public class MutantService implements IMutantService {
     private MutantRepository mutantRepository;
 
     /**
+     * Valida si un humano es mutante basándose en su secuencia de ADN
      *
      * @param dna
      * @return
@@ -57,6 +58,7 @@ public class MutantService implements IMutantService {
     }
 
     /**
+     * Cuenta el número de veces donde se detecta más de una secuencia de NUMBER_OF_CONSECUTIVE_LETTERS letras iguales
      *
      * @param sequence
      * @return
@@ -74,6 +76,7 @@ public class MutantService implements IMutantService {
     }
 
     /**
+     * Retorna las estadísticas de las verificaciones de ADN realizadas
      *
      * @return
      */

@@ -3,6 +3,9 @@ package com.meli.test.controller;
 import com.meli.test.models.dto.StatsOutDTO;
 import com.meli.test.models.dto.ValidationMutantInDTO;
 import com.meli.test.service.IMutantService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +24,12 @@ public class MutantController {
     @Autowired
     private IMutantService mutantService;
 
+    @ApiOperation(value = "Valida si un humano es mutante basándose en su secuencia de ADN")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Validación de ADN corresponde a un mutante"),
+            @ApiResponse(code = 400, message = "Error en los datos ingresados"),
+            @ApiResponse(code = 403, message = "Validación de ADN corresponde a un humano")
+    })
     @PostMapping
     public ResponseEntity<Void> isMutant(@Valid @RequestBody ValidationMutantInDTO validation){
         if(mutantService.isMutant(validation.getDna())){
@@ -30,6 +39,10 @@ public class MutantController {
         }
     }
 
+    @ApiOperation(value = "Retorna las estadísticas de las verificaciones de ADN realizadas", response = StatsOutDTO.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Ok")
+    })
     @GetMapping(path = "stats")
     public StatsOutDTO getStats(){
         return mutantService.getStats();

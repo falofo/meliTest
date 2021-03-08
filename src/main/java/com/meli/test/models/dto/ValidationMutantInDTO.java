@@ -3,6 +3,7 @@ package com.meli.test.models.dto;
 import com.meli.test.validator.MinSizeConstraint;
 import com.meli.test.validator.SquareMatrixConstraint;
 import com.meli.test.validator.ValidCharacterConstraint;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,6 @@ public class ValidationMutantInDTO {
     @MinSizeConstraint
     @SquareMatrixConstraint
     @ValidCharacterConstraint
+    @ApiModelProperty(notes = "Secuencia de ADN")
     private String[] dna;
 }

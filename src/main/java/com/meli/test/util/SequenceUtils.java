@@ -8,6 +8,7 @@ public class SequenceUtils {
     }
 
     /**
+     * Retorna las secuencias verticales a partir del ADN
      *
      * @param dna
      * @return
@@ -26,11 +27,16 @@ public class SequenceUtils {
     }
 
     /**
+     * Retorna la secuencia de diagonales de Derecha a Izquierda
      *
      * @param dna
      * @return
      */
     public static String getRightLeftDiagonals(String[] dna){
+        /**
+         * Se calcula desde donde se iniciara el recorrido de la cadena de ADN, donde se excluyen los datos sin
+         * relevancia (diagonales con un tamaño menor a NUMBER_OF_CONSECUTIVE_LETTERS)
+         */
         int i = 0, j = NUMBER_OF_CONSECUTIVE_LETTERS_WITHOUT_RELEVANCE;
         StringBuilder diagonal = new StringBuilder();
         while(j < dna.length) {
@@ -58,6 +64,7 @@ public class SequenceUtils {
     }
 
     /**
+     * Retorna la cadena de las Diagonales de derecha a Izquierda separadas por un |
      *
      * @param dna
      * @param row
@@ -75,11 +82,16 @@ public class SequenceUtils {
     }
 
     /**
+     * Retorna la secuencia de diagonales de izquierda a derecha
      *
      * @param dna
      * @return
      */
     public static String getLeftRightDiagonals(String[] dna){
+        /**
+         * Se calcula desde donde se iniciara el recorrido de la cadena de ADN, donde se excluyen los datos sin
+         * relevancia (diagonales con un tamaño menor a NUMBER_OF_CONSECUTIVE_LETTERS)
+         */
         int i = 0, j = (dna.length - 1) - NUMBER_OF_CONSECUTIVE_LETTERS_WITHOUT_RELEVANCE;
         StringBuilder diagonal = new StringBuilder();
         while(j >= 0) {
@@ -107,6 +119,7 @@ public class SequenceUtils {
     }
 
     /**
+     * Retorna la cadena de las diagonales de izquierda a derecha separadas por un |
      *
      * @param dna
      * @param row
