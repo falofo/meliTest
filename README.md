@@ -33,6 +33,8 @@ No-Mutante--------------------Mutante
 Se sabe si un humano es mutante, si se encuentra más de una secuencia de cuatro letras
 iguales, de forma oblicua, horizontal o vertical.
 
+En caso de verificar un mutante, retorna un HTTP 200-OK, en caso contrario un 403-Forbidden.
+
 #### Metodo GET /mutant/stats
 
 Devuelve un Json con las estadísticas de las verificaciones de ADN: 
