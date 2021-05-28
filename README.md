@@ -52,12 +52,10 @@ Para ejecutar la aplicacion se deben seguir los siguientes pasos:
 ```
 1. clonar la aplicación -> git clone https://github.com/falofo/meliTest.git
 2. Ingresar a la carpeta meliTest -> cd meliTest
-3. Crear una tabla en DynamoDb llamada "mutant" con una columna "id" de tipo String y una columna "mutant" de tipo Number
-4. Actualizar los parametros amazon.dynamodb.endpoint, amazon.aws.accesskey, amazon.aws.secretkey en el archivo application.properties con los valores de conexión a AWS
-5. Compilar la aplicación -> mvn clean install
-6. Ver Code coverage ingresar a -> ../meliTest/target/site/jacoco-ut/index.html
-7. Ejecutar la aplicación -> java -jar target/MeliTest-0.0.1-SNAPSHOT.jar
-8. Consumir el servicio Post http://localhost:5000/mutant body ejemplo: {"dna":["AACC","TTCC","GGAA","AATT"]}
-9. Consumir el servicio Get http://localhost:5000/mutant/stats 
-10. Ingresar a SwaggerUI http://localhost:5000/swagger-ui
+3. Compilar la aplicación -> mvn clean install
+4. Ver Code coverage ingresar a -> ../meliTest/target/site/jacoco-ut/index.html
+5. Ejecutar la aplicación -> java -jar target/MeliTest-1.1.0.jar
+6. Consumir el servicio Post http://localhost:5000/mutant body ejemplo: {"dna":["AACC","TTCC","GGAA","AATT"]}
+7. Consumir el servicio Get http://localhost:5000/mutant/stats 
+8. Ingresar a SwaggerUI http://localhost:5000/swagger-ui
 ```
